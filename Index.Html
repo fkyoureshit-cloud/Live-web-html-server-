@@ -1,0 +1,79 @@
+https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whale Market Command Center</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX'); // Replace with your actual G-Tag ID
+    </script>
+
+    <script>
+      /**
+       * WHALE MASTER INTEGRATED SCRIPT 2026
+       * Features: Affiliate Tracking, Phone Tracking, EQ Bank Alerts
+       */
+
+      // A. CAPTURE AFFILIATE: Save 'ref' from URL (e.g. site.com/?ref=vancouver_pro)
+      const urlParams = new URLSearchParams(window.location.search);
+      const affiliateID = urlParams.get('ref') || urlParams.get('aff');
+      if (affiliateID) {
+          localStorage.setItem('whale_affiliate', affiliateID);
+          console.log("Affiliate ID Logged: " + affiliateID);
+      }
+
+      // B. PHONE TRACKING: Monitor clicks to +1
+-236-255-2500
+      document.addEventListener('click', function(e) {
+        const phoneLink = e.target.closest('a[href^="tel:"]');
+        if (phoneLink) {
+          gtag('event', 'phone_call_click', {
+            'event_category': 'Leads',
+            'event_label': localStorage.getItem('whale_affiliate') || 'Direct',
+            'value': 1
+          });
+          console.log("Phone click tracked for: " + phoneLink.href);
+        }
+      });
+
+      // C. PAYMENT & EQ NOTIFICATION: Use this when a sale is made
+      async function triggerWhalePayment(amount) {
+        const currentAff = localStorage.getItem('whale_affiliate') || 'Direct';
+        
+        // 1. Send SMS Notification via Webhook (Connect this to Zapier/Twilio)
+        // This alerts your cell: 236-255-2500
+        fetch('https://your-webhook-url.com', { 
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: `Whale Alert! $${any-amount} CAD received via ${currentAff}. Transferring to EQ Bank.`
+          })
+        });
+
+        // 2. Log Conversion in Google Tags
+        gtag('event', 'purchase', {
+          'transaction_id': 'WHALE_' + Date.now(),
+          'affiliation': currentAff,
+          'value': amount,
+          'currency': 'CAD'
+        });
+
+        alert("Payment Processed. Funds directed to EQ Bank. Notification sent to 236-255-2500.");
+      }
+    </script>
+</head>
+<body>
+    <h1>Whale Market Dashboard</h1>
+    <p>Welcome, Dad. Everything is being tracked.</p>
+
+    <p>Call for Support: <a href="tel:+12362552500">236-255-2500</a></p>
+
+    <button onclick="triggerWhalePayment(49.99)">Simulate $49.99 Sale</button>
+
+</body>
+</html>
