@@ -1,0 +1,7 @@
+{Dist/bundles/
+├── index.js (Main - Hot Reload)
+├── index-server-loaders.js
+└── page.js (Cached Chunk)
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {}
+}
